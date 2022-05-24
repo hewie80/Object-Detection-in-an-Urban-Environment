@@ -42,10 +42,17 @@ Following analysis are made after exploring the dataset
 ![unclear](https://user-images.githubusercontent.com/99339837/153401355-c5291b1b-4469-4ad1-9685-22329ea45f43.jpg)
 ![1006](https://user-images.githubusercontent.com/99339837/170037858-bec2b546-da51-43f3-a261-a123ab2bce36.jpg)
 
-# Cross validation
-To train the model, data is split into three parts: training, validation and testing. By the dataset analysis and learning in lesson, dataset is split 0.8 for training, 0.1 for validation and 0.1 for testing. 
-Training
+This chart is for the object distribution. 
+1000 images are taken randomly from dataset and volume of class objects are summarized. It shows that vehicle has the biggest number.  Pedestrians are much but less than vehicle. Cyclists have the least number. So the distribution is not balanced.
+We can see from these charts that the images contain a higer number of vehicles that pedestrians and cyclists, where cyclists are the least numerous objects.
 
+![class distribution](https://user-images.githubusercontent.com/99339837/170052524-5ace906c-2d1a-42b4-b9ab-d40d1fcfc9e8.jpg)
+
+## Cross validation
+<br> * In this program, Cross validation strategy is to randomly split the dataset into three parts as traing,testing and evaluation. The ratio is 8:1:1. Because the training need large number of data so that the model can be well trained. From the analysis, cylicst has very small number. if the training data is not much, cyclist maybe not recognized.
+<br> *The dataset is randomly splitted in order to make sure that images are evenly distributed amongs the train, eval and test.
+
+## Training
 Reference experiment
 
 
