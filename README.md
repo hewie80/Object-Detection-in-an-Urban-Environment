@@ -83,4 +83,4 @@ DetectionBoxes_Recall/AR@1: 0.0266
 Total_loss Train: 0.8548
 Total_loss eval:  0.9018
 
-The video animation.mp4 demonstrates the working of this model in real life situations.
+
