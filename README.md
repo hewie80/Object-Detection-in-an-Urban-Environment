@@ -1,44 +1,46 @@
 # Object-Detection-in-an-Urban-Environment
 
-# Project overview
-1. When Self driving car is running on the road, it is necessary for car to sense object in 3D environment. Object detection is the basis of sense and help to classify object and give instruction on planning and prediction. So object detection takes important role in self driving car system.
-2. In this project, A CNN model is trained to classify objects such as cyclists, pedestrians and vehicles using data from Waymo. And then we will classify objects by the trained model in test images with lower loss. 
-# Dataset analysis
-1. About 10% data are in dark environment. Others are in bright. 
+## Project overview
+In this project, Data from the Waymo Open dataset is used to create a convolutional neural network to detect and classify objects. This is done by following steps such as data acquisition and processing, Exploratory data analysis(EDA) , cross validation, Data augmentation and creation of animations.
 
-Night      
+## Instructions
+### Data
+<br> Data from the Waymo Open dataset has already been downloaded in the classroom workspace. You can find the downloaded and processed files within the /data/waymo/ directory (note that this is different than the /home/workspace/data you'll use for splitting )
+### Exploratory Data Analysis
+<br> * Open the Exploratory Data Analysis notebook and implement a display_instances function to display images and annotations using matplotlib.  
+<br> * Exploring the data and report findings. Report anything relevant about the dataset in the writeup.
+### Create the splits
+<br> Create the different splits: training, validation and testing. implement the split_data function in the create_splits.py file. Once you have implemented this function, run it using:
+<br> python create_splits.py --data_dir /home/workspace/data/
+### Edit the config file
+<br> *Download the pretrained model and move it to training/pretrained-models/.
+<br> *Edit the config files to change the location of the training and validation files, as well as the location of the label_map file, pretrained weights. also need to adjust the batch size. To do so, run the following:
+<br> python edit_config.py --train_dir /home/workspace/data/train/ --eval_dir /home/workspace/data/val/ --batch_size 4 --checkpoint ./training/pretrained-models/ssd_resnet50_v1_fpn_640x640_coco17_tpu-8/checkpoint/ckpt-0 --label_map label_map.pbtxt
+A new config file has been created, pipeline_new.config.
+### Training
+<br> Launch very first experiment with the Tensorflow object detection API. Create a folder training/reference. Move the pipeline_new.config to this folder. You will now have to launch two processes:
+#### a training process:
+<br> * python model_main_tf2.py --model_dir=training/reference/ --pipeline_config_path=training/reference/pipeline_new.config
+#### an evaluation process:
+<br> * python model_main_tf2.py --model_dir=training/reference/ --pipeline_config_path=training/reference/pipeline_new.config --checkpoint_dir=training/reference/
+### Improve the performances
+<br> Try different data augmentation combinations and select the one you think is optimal for our dataset. Justify your choices in the writeup.
+### Creating an animation
+<br> Export the trained model and create a video of your model's inferences for any tf record file. 
+
+## Dataset analysis
+Following analysis are made after exploring the dataset
+<br> * Some images are taken in town,highway. There are vehicles, pedestrians and a cyclist. But not all the images have all the class objects. Most of images only have cars, pedestrians. 
+<br> * Some Images are taken during the day, some at night.
+<br> * Some images are very clear but some other images are dark,blured by fog.
 
 ![night](https://user-images.githubusercontent.com/99339837/153398084-f9d3ddea-5d23-44f4-bda9-aaa1ecb37c4f.jpg)
-
-Day
-
 ![day](https://user-images.githubusercontent.com/99339837/153398017-5336c4ed-6d45-4736-8794-613f0b237ad0.jpg)
-
-
-       
-2. Traffic intensity is different. About 80% data has high intensity.
-
-High intensity
-
 ![high intensity](https://user-images.githubusercontent.com/99339837/153402604-ca183133-97df-4386-9f42-277638035cb9.jpg)
-
-
-Low intensity
-
- ![low intensity](https://user-images.githubusercontent.com/99339837/153401309-a31dcabd-1ea9-4e8b-9369-0fe7c12421c6.jpg)
-      
-
-3. Data’s clearance is different.
-
-Clear 
-
-
+![low intensity](https://user-images.githubusercontent.com/99339837/153401309-a31dcabd-1ea9-4e8b-9369-0fe7c12421c6.jpg)
 ![clear](https://user-images.githubusercontent.com/99339837/153400726-d0c76308-8ca9-4922-a7f9-b5c0b63b4109.jpg)
-
-Not clear
- 
- 
 ![unclear](https://user-images.githubusercontent.com/99339837/153401355-c5291b1b-4469-4ad1-9685-22329ea45f43.jpg)
+![1006](https://user-images.githubusercontent.com/99339837/170037858-bec2b546-da51-43f3-a261-a123ab2bce36.jpg)
 
 # Cross validation
 To train the model, data is split into three parts: training, validation and testing. By the dataset analysis and learning in lesson, dataset is split 0.8 for training, 0.1 for validation and 0.1 for testing. 
