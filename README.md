@@ -70,9 +70,9 @@ With pre-trained model, the loss is descended. But after 2.5k, the loss is still
 
 # Improve on the reference
 Compared with reference experiment, below strategies are added.
-1. Random_rgb_to_gray. Set the probability to 0.2.
-2. Random_adjust_contrast. Set the min_delta as 0.5 and max_delta as 1.0.
-3. Random_adjust_brightness. Set the max_delta as 0.4.
+1. Random_rgb_to_gray. This augmentation is used so the the model can better recognize objects even in the dark or in zones where the view is blured due to fog.Set the probability to 0.2.
+2. Random_adjust_contrast. This augmentation is to change the contrast of the images and trains the model to recognize images in dart climates. Set the min_delta as 0.5 and max_delta as 1.0.
+3. Random_adjust_brightness. This augmentation is to modify the the brightness of the images randomly and enhances the object recognition of the model in daylight or night.Set the max_delta as 0.4.
 After these augmentation are implemented, total loss train and eval are reduced to 0.8548 and 0.9018 respectively.
 
  ![after](https://user-images.githubusercontent.com/99339837/153401113-f6b3fadf-cd3b-452e-a02f-448c7e5a752d.jpg)
@@ -83,3 +83,4 @@ DetectionBoxes_Recall/AR@1: 0.0266
 Total_loss Train: 0.8548
 Total_loss eval:  0.9018
 
+The video animation.mp4 demonstrates the working of this model in real life situations.
