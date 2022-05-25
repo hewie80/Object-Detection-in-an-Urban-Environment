@@ -74,8 +74,11 @@ Compared with reference experiment, below strategies are added.
 2. Random_adjust_contrast. This augmentation is to change the contrast of the images and trains the model to recognize images in dart climates. Set the min_delta as 0.5 and max_delta as 1.0.
 3. Random_adjust_brightness. This augmentation is to modify the the brightness of the images randomly and enhances the object recognition of the model in daylight or night.Set the max_delta as 0.4.
 After these augmentation are implemented, total loss train and eval are reduced to 0.8548 and 0.9018 respectively.
+![loss screenshot](https://user-images.githubusercontent.com/99339837/170379468-30032730-60ba-4ac2-ac42-7469d3544113.jpg)
 
- ![after](https://user-images.githubusercontent.com/99339837/153401113-f6b3fadf-cd3b-452e-a02f-448c7e5a752d.jpg)
+![DetectionBoxes_Precision](https://user-images.githubusercontent.com/99339837/170379488-33d49559-39b6-4050-ad8b-7527e6c81318.jpg)
+
+![DetectionBoxes_Recall](https://user-images.githubusercontent.com/99339837/170379499-2f51cf2a-1c94-4f3b-b606-f59f431d67fb.jpg)
 
 
 DetectionBoxes_Precision/mAP: 0.1103
